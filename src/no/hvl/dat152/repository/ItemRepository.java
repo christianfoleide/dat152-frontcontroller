@@ -19,8 +19,8 @@ public class ItemRepository {
 	private ItemRepository() {
 		
 		items = new ConcurrentHashMap<Integer, Item>();
-		items.put(0, new Item(1, "Te", 20.0));
-		items.put(1, new Item(2, "Melk", 25.0));
+		items.put(1, new Item(1, "Te", 20.0));
+		items.put(2, new Item(2, "Melk", 25.0));
 		items.put(3, new Item(3, "Sjokolade", 40.0));
 		
 		gson = new Gson();
@@ -43,7 +43,21 @@ public class ItemRepository {
 	}
 	
 	public void createItem(Item item) {
-		items.put(nextId.getAndIncrement(), item);
+		int id = nextId.getAndIncrement();
+		item.setId(id);
+		items.put(id, item);
+	}
+	
+	public String updateItem(Item newItem, int id) {
+		
+		Item item = items.get(id);
+		if (item == null) {
+			return null;
+		}
+		item.setName(newItem.getName());
+		item.setPrice(newItem.getPrice());
+		
+		return gson.toJson(item);
 	}
 	
 	public String singleItemAsJson(int id) {

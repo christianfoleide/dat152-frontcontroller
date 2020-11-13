@@ -42,4 +42,13 @@ public class JsonUtil {
 		
 		return gson.fromJson(jBuffer.toString(), Item.class);
 	}
+	
+	
+	public static void SendJsonError(String json, HttpServletResponse resp) throws IOException {	
+		PrintWriter writer = resp.getWriter();
+		resp.addHeader("Content-Type", "application/json");
+		writer.println(json);
+		writer.flush();
+		
+	}
 }
