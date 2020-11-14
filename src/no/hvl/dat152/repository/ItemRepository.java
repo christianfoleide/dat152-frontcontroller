@@ -40,7 +40,7 @@ public class ItemRepository {
 			return null;
 		}
 		
-		return gson.toJson(items);
+		return gson.toJson(items.values());
 	}
 	
 	private Item getItem(int id) {
