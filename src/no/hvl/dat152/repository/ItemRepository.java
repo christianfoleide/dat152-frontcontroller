@@ -34,6 +34,15 @@ public class ItemRepository {
 		return instance;
 	}
 	
+	public String deleteItem(int id) {
+		Item item = items.remove(id); //no-op if doesn't exist
+		if (item == null) {
+			return null;
+		}
+		
+		return gson.toJson(items);
+	}
+	
 	private Item getItem(int id) {
 		return items.get(id);
 	}

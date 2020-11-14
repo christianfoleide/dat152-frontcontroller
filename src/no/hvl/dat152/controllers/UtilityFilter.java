@@ -1,5 +1,5 @@
 package no.hvl.dat152.controllers;
-
+							
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -19,10 +19,10 @@ import com.google.gson.Gson;
 
 import no.hvl.dat152.model.ErrorMessage;
 import no.hvl.dat152.repository.JsonUtil;
-
+					
 @WebFilter("/api/*")
 public class UtilityFilter implements Filter {
-
+	
 	private List<String> legalMethods;
 	private Gson gson;
     
