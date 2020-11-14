@@ -14,9 +14,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
-
 import com.google.gson.Gson;
 
 import no.hvl.dat152.model.ErrorMessage;
@@ -53,7 +51,7 @@ public class UtilityFilter implements Filter {
 		
 		ErrorMessage em = new ErrorMessage().withStatusCode(405).withDescription("method not allowed");
 		String errorJson = gson.toJson(em);
-		JsonUtil.SendJsonError(errorJson, response);
+		JsonUtil.sendJson(errorJson, response);
 		
 	}
 

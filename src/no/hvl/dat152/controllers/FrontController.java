@@ -13,7 +13,8 @@ import com.google.gson.Gson;
 
 import no.hvl.dat152.action.Action;
 import no.hvl.dat152.action.CreateItemAction;
-import no.hvl.dat152.action.GetItemAction;
+import no.hvl.dat152.action.GetAllItemsAction;
+import no.hvl.dat152.action.GetSingleItemAction;
 import no.hvl.dat152.action.UpdateItemAction;
 import no.hvl.dat152.model.ErrorMessage;
 import no.hvl.dat152.repository.JsonUtil;
@@ -27,9 +28,10 @@ public class FrontController extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		actions = new HashMap<String, Action>();
-		actions.put("/allItems", new GetItemAction());
-		actions.put("/createItem", new CreateItemAction());
-		actions.put("/updateItem", new UpdateItemAction());
+		actions.put("/allitems", new GetAllItemsAction());
+		actions.put("/singleitem", new GetSingleItemAction());
+		actions.put("/createitem", new CreateItemAction());
+		actions.put("/updateitem", new UpdateItemAction());
 		
 		gson = new Gson();
 	}
@@ -46,7 +48,7 @@ public class FrontController extends HttpServlet {
 			
 			String errorJson = gson.toJson(em);
 			resp.setStatus(400);
-			JsonUtil.SendJsonError(errorJson, resp);
+			JsonUtil.sendJson(errorJson, resp);
 			
 		}
 	}

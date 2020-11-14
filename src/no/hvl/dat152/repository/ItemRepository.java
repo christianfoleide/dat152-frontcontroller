@@ -62,6 +62,9 @@ public class ItemRepository {
 	
 	public String singleItemAsJson(int id) {
 		Item item = getItem(id);
+		if (item == null) {
+			return null;
+		}
 		return gson.toJson(item);
 	}
 	
